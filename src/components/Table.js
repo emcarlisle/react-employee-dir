@@ -64,7 +64,7 @@ function Table(props) {
                         <th scope="col">Email</th>
                     </tr>
                 </thead>
-                {/* Same table header BUT return this result with this data: */}
+                {/* Same table header BUT return this result with this data if a string is returned: */}
                 <tbody>
                     {
                         matches.map(result => (
@@ -83,8 +83,35 @@ function Table(props) {
                     }
                 </tbody>
             </table>
+        )
 
-
+    } else {
+        // Filter the users by at least one property, img was made clickable in table
+        // to render a card with this data:
+        return (
+            <div>
+                <div className="card mb-3">
+                    <div className="row no-gutters">
+                        <div className="photo col-md-4">
+                            <img src={props.currentPage.result.picture.large} className="card-img"/>
+                        </div>
+                        <div className="col-md-8">
+                            <div className="card-body">
+                                <p className="card-text">First Name: {props.currentPage.result.name.first}</p>
+                                <p className="card-text">Last Name: {props.currentPage.result.name.last}</p>
+                                <p className="card-text">Phone Number: {props.currentPage.result.cell}</p>
+                                <p className="card-text">Email: {props.currentPage.result.email}</p>
+                                <p className="card-text">Location: {props.currentPage.result.location.city}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
     }
+
 }
+
+// export the Table to be imported into the Container component:
+export default Table;
+
