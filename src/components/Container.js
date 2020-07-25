@@ -14,11 +14,11 @@ class Container extends Component {
         search: "",
         //In our Table, currentPage default is set to "":
         currentPage: ""
-    };
+    }
     // componentDidMount() is invoked immediately after a component is mounted (inserted into the tree)
     componentDidMount() {
         this.searchEmployee()
-    };
+    }
     searchEmployee = () => {
         //API call to get users
         Api.getUsers()
@@ -26,7 +26,7 @@ class Container extends Component {
                 this.setState({ result: res.data.results })
             })
             .catch(err => console.log(err));
-    };
+    }
     // function to set the state
     handlePageChange = (page) => {
         this.setState({ currentPage: page })

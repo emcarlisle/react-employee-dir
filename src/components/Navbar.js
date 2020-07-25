@@ -18,7 +18,7 @@ export default function Navbar(props) {
     else {
         return (
             <nav className="navbar navbar-light bg-light">
-                <a href="#home" onclick={() => props.handlePageChange("")}>Home</a>
+                <a href="#home" onClick={() => props.handlePageChange("")}>Home</a>
             </nav>
         )
     }
