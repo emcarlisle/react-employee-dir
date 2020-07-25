@@ -1,9 +1,8 @@
-{/* Import all components and the api.js to access axios for the API call */ }
+// Import all components and the api.js to access axios for the API call
 import React, { Component } from "react";
+import Api from "../utils/Api";
 import Table from "./Table";
 import Navbar from "./Navbar";
-import API from "../utils/Api";
-import { createPortal } from "react-dom";
 
 // Functional stateless components (i.e. Navbar & Table) are just plain JS functions, so setState() can't be used
 // This is a class component bc "state" has to be set: setState();
@@ -22,7 +21,7 @@ class Container extends Component {
     };
     searchEmployee = () => {
         //API call to get users
-        API.getUsers()
+        Api.getUsers()
             .then(res => {
                 this.setState({ result: res.data.results })
             })
@@ -32,6 +31,13 @@ class Container extends Component {
     handlePageChange = (page) => {
         this.setState({ currentPage: page })
     };
+    
+    // Inputs are event driven, get the value of a name to be filtered
+    handleInputChange = (event) => {
+        // update the state of the page by calling it here
+        this.handlePageChange(event.target.value)
+    }
+
     // calling the sortByFirst() function, created in the Table component
     sortByFirst = () => {
         let firstName = this.state.result.sort(compare)
@@ -42,13 +48,13 @@ class Container extends Component {
             if (nameA > nameB) {
                 comparison = 1;
             } else if (nameA < nameB) {
-                compare = -1;
+                comparison = -1;
             }
             return comparison;
         }
         // set state to be sorted ascending or descending
-        this.setState({ result: firstName });
-    };
+        this.setState({ result: firstName })
+    }
     // calling the sortByLast() function, created in the Table component
     sortByLast = () => {
         let lastName = this.state.result.sort(compare)
@@ -59,7 +65,7 @@ class Container extends Component {
             if (nameA > nameB) {
                 comparison = 1;
             } else if (nameA < nameB) {
-                compare = -1;
+                comparison = -1;
             }
             return comparison;
         }
@@ -67,4 +73,35 @@ class Container extends Component {
         this.setState({ result: lastName });
     };
 
-}
+    // the render() method is the only required method in a class component.
+    // when called, it should examine this.props and this.state and return 
+    // React elements, arrays/fragments, portals, string/numbers, booleans/null
+
+    render() {
+        if (this.state.result) {
+            //returns React element:
+            return (
+                <div className="container-sm">
+                    <Navbar
+                        handlePageChange={this.handlePageChange}
+                        currentPage={this.state.currentPage}
+                        handleInputChange={this.handleInputChange}
+                    />
+                    <Table
+                        results={this.state.result}
+                        handlePageChange={this.handlePageChange}
+                        currentPage={this.state.currentPage}
+                        sortByFirst={this.sortByFirst}
+                        sortByLast={this.sortByLast}
+                    />
+                </div>
+            )
+        }
+        else {
+            return <div>No Results</div>
+        }
+    };
+
+};
+
+export default Container;

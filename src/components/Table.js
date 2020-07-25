@@ -9,14 +9,14 @@ function Table(props) {
     if (props.currentPage === "") {
         return (
             <table className="header">
-                {/* COLS */}
+                {/* COLS  */}
                 <thead>
                     <tr>
                         {/*  Props is referencing a file made in somewhere else in the project. This is how add that function to the DOM.
                         Then you pass it to the component with this.sortbyFirst */}
                         <th scope="col"></th>
-                        <th scope="col"><a href="name" onClick={() => props.sortByFirst()}>First Name</a></th>
-                        <th scope="col"><a href="name" onClick={() => props.sortByLast()}>Last Name</a></th>
+                        <th scope="col"><a href="#name" onClick={() => props.sortByFirst()}>First Name</a></th>
+                        <th scope="col"><a href="#name" onClick={() => props.sortByLast()}>Last Name</a></th>
                         <th scope="col">Phone Number</th>
                         <th scope="col">Email</th>
                     </tr>
@@ -93,7 +93,7 @@ function Table(props) {
                 <div className="card mb-3">
                     <div className="row no-gutters">
                         <div className="photo col-md-4">
-                            <img src={props.currentPage.result.picture.large} className="card-img"/>
+                            <img src={props.currentPage.result.picture.large} className="card-img" alt="http://placekitten.com/200/300"/>
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
