@@ -43,5 +43,48 @@ function Table(props) {
                 </tbody>
             </table>
         )
+        // the props.currentPage is referring to the name being typed in the search input box.
+        // so that means if a user types in a name("string") then it will filter the results based on the name typed 
+    } else if (typeof props.currentPage === "string") {
+        // typeof refers to the datatype. so if the type is string input then run the if block.
+
+        let matches = props.results.filter(result => {
+            // The substring() method extracts the characters from a string, between two specified indices, and returns the new sub string.
+            // string.substring(start, end), start: the position to start the extraction//end: where to end the extraction
+            return (result.name.first + " " + result.name.last).substring(0, props.currentPage.length).toLowerCase() === props.currentPage.toLowerCase();
+        })
+        return (
+            <table className="header">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"><a href="#name" onClick={() => props.sortByFirst()}>First Name</a></th>
+                        <th scope="col"><a href="#name" onClick={() => props.sortByLast()}>Last Name</a></th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                {/* Same table header BUT return this result with this data: */}
+                <tbody>
+                    {
+                        matches.map(result => (
+                            <tr key={result.cell}>
+                                <th scope="row">
+                                    <a href="#singlePage" onClick={() => props.handlePageChange({ result })}>
+                                        <img src={result.pictures.thumbnail} className="picture" alt="http://placekitten.com/200/300"></img>
+                                    </a>
+                                </th>
+                                <td>{result.name.first}</td>
+                                <td>{result.name.last}</td>
+                                <td>{result.cell}</td>
+                                <td>{result.email}</td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+
+
+        )
     }
 }
