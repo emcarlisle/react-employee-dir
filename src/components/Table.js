@@ -1,10 +1,10 @@
 import React from "react";
 
+
 //Props are used to reference state properties 
 //or the functions used to handle them.
 //If you need to map over results in state you go props.results.map.Also, props.somehandlefunction 
 //refers to a function created.Have a file with state being established and handled beside a state using props
-
 function Table(props) {
     if (props.currentPage === "") {
         return (
