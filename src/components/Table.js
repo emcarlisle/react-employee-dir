@@ -89,7 +89,7 @@ function Table(props) {
         // Filter the users by at least one property, img was made clickable in table
         // to render a card with this data:
         return (
-            <div className="bg-dark">
+            <div>
                 <div className="card mb-3 bg-light">
                     <div className="row no-gutters">
                         <div className="photo col-md-4">
