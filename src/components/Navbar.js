@@ -5,6 +5,7 @@ export default function Navbar(props) {
         return (
             <nav className="navbar navbar-light bg-dark">
                 <a href="#home" className="alert alert-dark" onclick={() => props.handlePageChange("")}>Home</a>
+                <header className="header text-white">Employee Directory</header>
                 <form className="form-inline">
                     <input
                         value={props.currentPage}
